@@ -247,7 +247,9 @@ pub(crate) mod ast_ty {
                 }
             }
             (_, true, Some(32)) => syn::parse_quote! { f32 },
-            (_, true, Some(64)) | (FloatKind::Double, true, None) => syn::parse_quote! { f64 },
+            (_, true, Some(64)) | (FloatKind::Double, true, None) => {
+                syn::parse_quote! { f64 }
+            }
             (FloatKind::Float, ..) => raw_type(ctx, "c_float"),
             (FloatKind::Double, ..) => raw_type(ctx, "c_double"),
             (FloatKind::LongDouble, ..) => {
